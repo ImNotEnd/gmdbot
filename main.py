@@ -122,12 +122,25 @@ def source(levelID):
     except:
         return ""
 
+def morestuff(levelID):
+    dsplit = getComments(levelID)[0]
+    try:
+        per = random.randint(0, 100)
+        com = dsplit.split("!ship ")[1].split(" x ")
+        ccc = f"{com[0]} is {str(per)}% in love with {com[1]}"
+        cccc = post(levelID, ccc)
+        print("Succ")
+    except:
+        return ""
+
 x = input("Level ID: ")
 
 z = 1
 while True:
     t = Thread(target=commentBot, args=(x,))
     t2 = Thread(target=source, args=(x,))
+    t3 = Thread(target=morestuff, args=(x,))
     t.start()
     t2.start()
+    t3.start()
     time.sleep(0.3)
