@@ -111,11 +111,23 @@ def commentBot(levelID):
         print("Succ")
     except:
         return ""
+    
+def source(levelID):
+    dsplit = getComments(levelID)[0]
+    try:
+        if "!source" in dsplit:
+            ccc = "You can find my source code @ github.com/ImNotEnd/gmdbot"
+            post(levelID, ccc)
+            print("Succ")
+    except:
+        return ""
 
 x = input("Level ID: ")
 
 z = 1
 while True:
     t = Thread(target=commentBot, args=(x,))
+    t2 = Thread(target=source, args=(x,))
     t.start()
+    t2.start()
     time.sleep(0.3)
