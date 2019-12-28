@@ -115,10 +115,10 @@ def commentBot(levelID):
 def source(levelID):
     dsplit = getComments(levelID)[0]
     try:
-        if "!source" in dsplit:
-            ccc = "You can find my source code @ github.com/ImNotEnd/gmdbot"
-            post(levelID, ccc)
-            print("Succ")
+        com = dsplit.split("!source")[1]
+        ccc = "You can find my source code @ github.com/ImNotEnd/gmdbot"
+        cccc = post(levelID, ccc)
+        print("Succ")
     except:
         return ""
 
