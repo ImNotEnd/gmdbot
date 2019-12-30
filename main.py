@@ -132,6 +132,23 @@ def morestuff(levelID):
         print("Succ")
     except:
         return ""
+    
+def chknm(levelID):
+    ninds = getComments(levelID)
+    dsplit = ninds[0]
+    nam = ninds[1]
+    try:
+        com = dsplit.split("!checkname ")[1]
+        result = accountID(com)
+        if result == "Failed!":
+            result1 = "not taken"
+        else:
+            result1 = "taken"
+        ccc = f"@{nam}, {com} is {result1}"
+        post(levelID, ccc)
+        print("Succ")
+    except:
+        return ""
 
 x = input("Level ID: ")
 
@@ -140,7 +157,9 @@ while True:
     t = Thread(target=commentBot, args=(x,))
     t2 = Thread(target=source, args=(x,))
     t3 = Thread(target=morestuff, args=(x,))
+    t4 = Thread(target=chknm, args=(x,))
     t.start()
     t2.start()
     t3.start()
+    t4.start()
     time.sleep(0.3)
