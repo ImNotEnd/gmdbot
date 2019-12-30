@@ -2,13 +2,13 @@ from urllib.request import urlopen, Request
 from itertools import cycle
 from threading import Thread
 from json import loads
-import time, base64, hashlib
+import time, base64, hashlib, random, liketest
 
 #########################################
-niggerlist = ['Mario123P0wer'] # unused but essentially banlist
+niggerlist = ['Mario123P0wer'] #Ban list, not used
 #########################################
-userName = "insert username"
-password1 = "insert password"
+userName = usernamehere
+password1 = passwordhere
 firstACCID = ""
 gjp123 = ""
 secret = "Wmfd2893gb7"
@@ -107,11 +107,11 @@ def commentBot(levelID):
     try:
         com = dsplit.split("!demon ")[1]
         ccc = getDemons(com)
-        cccc = post(levelID, ccc)
+        post(levelID, ccc)
         print("Succ")
     except:
         return ""
-    
+
 def source(levelID):
     dsplit = getComments(levelID)[0]
     try:
@@ -132,7 +132,7 @@ def morestuff(levelID):
         print("Succ")
     except:
         return ""
-    
+
 def chknm(levelID):
     ninds = getComments(levelID)
     dsplit = ninds[0]
