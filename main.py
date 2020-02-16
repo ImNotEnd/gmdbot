@@ -2,13 +2,18 @@ from urllib.request import urlopen, Request
 from itertools import cycle
 from threading import Thread
 from json import loads
-import time, base64, hashlib, random, liketest
+from t import translateXXX
+import time, base64, hashlib, random, bettercomm
 
 #########################################
-niggerlist = ['Mario123P0wer'] #Ban list, not used
+f = open("banana.txt", "r+")
+
+n = f.read().split(";")
+
+admins = ['lnine', 'akfez']
 #########################################
-userName = usernamehere
-password1 = passwordhere
+userName = input("Enter bot name: ")
+password1 = input("Enter bot password: ")
 firstACCID = ""
 gjp123 = ""
 secret = "Wmfd2893gb7"
@@ -103,63 +108,137 @@ def getuserinfo(a2ccountID):
     return listedshit
 
 def commentBot(levelID):
-    dsplit = getComments(levelID)[0]
-    try:
-        com = dsplit.split("!demon ")[1]
-        ccc = getDemons(com)
-        post(levelID, ccc)
-        print("Succ")
-    except:
-        return ""
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(3)
+    else:
+        try:
+            come = com.split("!demon ")[1]
+            ccc = getDemons(come)
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
 
 def source(levelID):
     dsplit = getComments(levelID)[0]
     try:
         com = dsplit.split("!source")[1]
         ccc = "You can find my source code @ github.com/ImNotEnd/gmdbot"
-        cccc = post(levelID, ccc)
+        bettercomm.uploadGJComment(userName, password1, ccc, levelID)
         print("Succ")
     except:
         return ""
 
 def morestuff(levelID):
-    dsplit = getComments(levelID)[0]
-    try:
-        per = random.randint(0, 100)
-        com = dsplit.split("!ship ")[1].split(" x ")
-        ccc = f"{com[0]} is {str(per)}% in love with {com[1]}"
-        cccc = post(levelID, ccc)
-        print("Succ")
-    except:
-        return ""
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(5)
+    else:
+        try:
+            per = random.randint(0, 100)
+            come = com.split("!ship ")[1].split(" x ")
+            ccc = f"{come[0]} is {str(per)}% in love with {come[1]}"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+
+def ggay(levelID):
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(5)
+    else:
+        try:
+            per = random.randint(0, 100)
+            come = com.split("!howgay ")[1]
+            ccc = f"{come} is {str(per)}% gay"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+
+def banning(levelID):
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in admins:
+        try:
+            ds = com.split("!ban ")[1].lower()
+            with open("banana.txt", "a") as zxz:
+                zxz.write(f";{ds}")
+                zxz.close()
+            ccc = f"{ds} has been banned."
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            time.sleep(3)
+            print("Succ")
+        except:
+            return ""
+    else:
+        time.sleep(5)
 
 def chknm(levelID):
     ninds = getComments(levelID)
     dsplit = ninds[0]
     nam = ninds[1]
-    try:
-        com = dsplit.split("!checkname ")[1]
-        result = accountID(com)
-        if result == "Failed!":
-            result1 = "not taken"
-        else:
-            result1 = "taken"
-        ccc = f"@{nam}, {com} is {result1}"
-        post(levelID, ccc)
-        print("Succ")
-    except:
-        return ""
+    if nam.lower() in n:
+        time.sleep(5)
+    else:
+        try:
+            come = dsplit.split("!checkname ")[1]
+            result = accountID(come)
+            if result == "Failed!":
+                result1 = "not taken"
+            else:
+                result1 = "taken"
+            ccc = f"@{nam}, {come} is {result1}"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
 
-x = input("Level ID: ")
+def translateBot(levelID):
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(3)
+    else:
+        try:
+            if com.startswith("!translate "):
+                come = com.split("!translate ")[1].split(" | ")[0]
+            lang = com.split(" | ")[1].split(" / ")[0]
+            dest = com.split(" | ")[1].split(" / ")[1]
+            pp = translateXXX(come, lang, dest)
+            ccc = f"@{nam}, {pp}"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+    time.sleep(7)
+
+xxxx = input("Level ID: ")
 
 z = 1
 while True:
-    t = Thread(target=commentBot, args=(x,))
-    t2 = Thread(target=source, args=(x,))
-    t3 = Thread(target=morestuff, args=(x,))
-    t4 = Thread(target=chknm, args=(x,))
+    t = Thread(target=commentBot, args=(xxxx,))
+    t2 = Thread(target=source, args=(xxxx,))
+    t3 = Thread(target=morestuff, args=(xxxx,))
+    t4 = Thread(target=chknm, args=(xxxx,))
+    t5 = Thread(target=banning, args=(xxxx,))
+    t6 = Thread(target=ggay, args=(xxxx,))
+    t7 = Thread(target=translateBot, args=(xxxx,))
     t.start()
     t2.start()
     t3.start()
     t4.start()
+    t5.start()
+    t6.start()
+    t7.start()
     time.sleep(0.3)
