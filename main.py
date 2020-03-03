@@ -10,7 +10,9 @@ f = open("banana.txt", "r+")
 
 n = f.read().split(";")
 
-admins = ['lnine', 'akfez']
+admins = ['powermass', 'akfez', 'goatts']
+
+balls = ['It is certain.', 'It is decidedly so.', 'Without a doubt.', 'Yes - definitely.', 'You may rely on it.', 'As I see it, yes.', 'Most likely.', 'Outlook good.', 'Yes.', 'Signs point to yes.', 'Reply hazy, try again.', 'Ask again later.', 'Better not tell you now.', 'Cannot predict now.', 'Concentrate and ask again.', 'Don\'t count on it.', 'My reply is no.', 'My sources say no.', 'Outlook not so good.', 'Very doubtful.', 'You are cringe, do not ask again or there will be consequences.']
 #########################################
 userName = input("Enter bot name: ")
 password1 = input("Enter bot password: ")
@@ -117,20 +119,12 @@ def commentBot(levelID):
         try:
             come = com.split("!demon ")[1]
             ccc = getDemons(come)
+            if come.lower() == "kenos":
+                ccc = "YEEEEEEEEEEEEEEEEEEEEEEEEEEEEEES"
             bettercomm.uploadGJComment(userName, password1, ccc, levelID)
             print("Succ")
         except:
             return ""
-
-def source(levelID):
-    dsplit = getComments(levelID)[0]
-    try:
-        com = dsplit.split("!source")[1]
-        ccc = "You can find my source code @ github.com/ImNotEnd/gmdbot"
-        bettercomm.uploadGJComment(userName, password1, ccc, levelID)
-        print("Succ")
-    except:
-        return ""
 
 def morestuff(levelID):
     dsplit = getComments(levelID)
@@ -203,6 +197,40 @@ def chknm(levelID):
         except:
             return ""
 
+def eightball(levelID):
+    ninds = getComments(levelID)
+    dsplit = ninds[0]
+    nam = ninds[1]
+    if nam.lower() in n:
+        time.sleep(5)
+    else:
+        try:
+            come = dsplit.split("!8ball ")[1]
+            r = random.randint(0, 20)
+            response = balls[r]
+            ccc = f"@{nam}, {response}"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+
+def coin(levelID):
+    ninds = getComments(levelID)
+    dsplit = ninds[0]
+    nam = ninds[1]
+    if nam.lower() in n:
+        time.sleep(5)
+    else:
+        try:
+            come = dsplit.split("!coinflip")[1]
+            r = ['Heads', 'Tails']
+            response = r[random.randint(0, 2)]
+            ccc = f"@{nam}, you flipped a coin and got... {response}!"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+
 def translateBot(levelID):
     dsplit = getComments(levelID)
     com = dsplit[0]
@@ -223,22 +251,61 @@ def translateBot(levelID):
             return ""
     time.sleep(7)
 
+def peensize(levelID):
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(3)
+    else:
+        try:
+            L = ['=', '=']
+            size = ''.join(random.choice(L) for i in range(random.randint(0, 15)))
+            come = com.split("!peensize ")[1]
+            ccc = f"@{nam}, {come}'s size is 8{size}D"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+
+def probability(levelID):
+    dsplit = getComments(levelID)
+    com = dsplit[0]
+    nam = dsplit[1]
+    if nam.lower() in n:
+        time.sleep(3)
+    else:
+        try:
+            per = random.randint(0, 100)
+            come = com.split("!chances ")[1]
+            ccc = f"@{nam}, the chances of {come} are {per}%"
+            bettercomm.uploadGJComment(userName, password1, ccc, levelID)
+            print("Succ")
+        except:
+            return ""
+   
 xxxx = input("Level ID: ")
 
 z = 1
 while True:
     t = Thread(target=commentBot, args=(xxxx,))
-    t2 = Thread(target=source, args=(xxxx,))
     t3 = Thread(target=morestuff, args=(xxxx,))
     t4 = Thread(target=chknm, args=(xxxx,))
     t5 = Thread(target=banning, args=(xxxx,))
     t6 = Thread(target=ggay, args=(xxxx,))
     t7 = Thread(target=translateBot, args=(xxxx,))
+    t8 = Thread(target=peensize, args=(xxxx,))
+    t9 = Thread(target=probability, args=(xxxx,))
+    t10 = Thread(target=eightball, args=(xxxx,))
+    t11 = Thread(target=coin, args=(xxxx,))
     t.start()
-    t2.start()
     t3.start()
     t4.start()
     t5.start()
     t6.start()
     t7.start()
+    t8.start()
+    t9.start()
+    t10.start()
+    t11.start()
     time.sleep(0.3)
