@@ -1,3 +1,3 @@
 # gmdbot
 
-I did shit go check it out @ main.py
+Main bot file is s.py, have fun.
